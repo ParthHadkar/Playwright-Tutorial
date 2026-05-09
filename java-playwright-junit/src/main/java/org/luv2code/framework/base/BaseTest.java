@@ -37,6 +37,15 @@ public class BaseTest {
         }
     }
 
+    // wait in seconds method
+    public void waitInSeconds(long pSec) {
+        try {
+            Thread.sleep(1000 * pSec);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @AfterEach
     void tearDown() {
         // close the browser
