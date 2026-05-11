@@ -10,6 +10,7 @@ public class BaseTest {
 
     public Playwright playwright;
     public Browser browser;
+    public BrowserContext context;
     public Page page;
 
     @BeforeEach
@@ -22,7 +23,9 @@ public class BaseTest {
                         .setArgs(List.of("--start-maximized"))
         );
         // create context without viewport (true maximize effect)
-        page = browser.newContext(new Browser.NewContextOptions().setViewportSize(null)).newPage();
+        //page = browser.newContext(new Browser.NewContextOptions().setViewportSize(null)).newPage();
+        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
+        page = context.newPage();
 
         // navigate to luv2test site
         page.navigate("https://www.luv2test.com/");
