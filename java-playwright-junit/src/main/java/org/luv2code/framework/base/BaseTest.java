@@ -27,7 +27,7 @@ public class BaseTest {
         context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
         page = context.newPage();
 
-        //page.setDefaultTimeout(20000);
+        page.setDefaultTimeout(15000); // set to 15 seconds
 
         // navigate to luv2test site
         page.navigate("https://www.luv2test.com/");
