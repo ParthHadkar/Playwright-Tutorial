@@ -4,6 +4,7 @@ import com.microsoft.playwright.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.nio.file.Paths;
 import java.util.List;
 
 public class BaseTest {
@@ -20,11 +21,15 @@ public class BaseTest {
         browser = playwright.chromium().launch(
                 new BrowserType.LaunchOptions()
                         .setHeadless(false)
+                        .setSlowMo(1000)
                         .setArgs(List.of("--start-maximized"))
         );
         // create context without viewport (true maximize effect)
         //page = browser.newContext(new Browser.NewContextOptions().setViewportSize(null)).newPage();
-        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
+        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null)
+                .setRecordVideoDir(Paths.get("target/videos"))
+                .setRecordVideoSize(1280, 720)
+        );
         page = context.newPage();
 
         page.setDefaultTimeout(15000); // set to 15 seconds
@@ -55,6 +60,7 @@ public class BaseTest {
     void tearDown() {
         // close the browser
         browser.close();
+        context.close();
         playwright.close();
     }
 
