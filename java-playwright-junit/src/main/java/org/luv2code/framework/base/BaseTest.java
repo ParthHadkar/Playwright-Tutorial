@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.luv2code.framework.constants.TestDataConstant;
 import org.luv2code.framework.utils.ConfigUtil;
+import org.luv2code.framework.utils.WaitTimeUtil;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -45,7 +46,7 @@ public class BaseTest {
         );
         page = context.newPage();
 
-        page.setDefaultTimeout(15000); // set to 15 seconds
+        page.setDefaultTimeout(WaitTimeUtil.MEDIUM_15.getMillis()); // set to 15 seconds
 
         // navigate to luv2test site
         page.navigate(TestDataConstant.BASE_URL);
@@ -56,7 +57,8 @@ public class BaseTest {
     public static void highlightElement(Locator pLocator) {
         ElementHandle lElementHandle = pLocator.elementHandle();
         if (lElementHandle != null) {
-            pLocator.page().evaluate("e => { e.style.border='3px solid red';}", lElementHandle);
+            pLocator.page().evaluate("e => { e.style.border='3px solid green'; " +
+                    "e.style.backgroundColor='yellow';}", lElementHandle);
         }
     }
 

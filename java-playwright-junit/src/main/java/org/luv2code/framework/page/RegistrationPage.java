@@ -24,7 +24,8 @@ public class RegistrationPage extends BasePage {
 
     // actions
     public void verifyRegistrationFormHeading() {
-        page.locator(registrationFormHeading).isVisible();
+        //page.locator(registrationFormHeading).isVisible();
+        shouldBeDisplayed(registrationFormHeading);
     }
 
     public void enterFullName(String pText) {
@@ -68,7 +69,8 @@ public class RegistrationPage extends BasePage {
     }
 
     public void verifyRegistrationSuccess() {
-        page.locator(successNameCell).isVisible();
+        //page.locator(successNameCell).isVisible();
+        shouldBeDisplayed(successNameCell);
     }
 
 }
