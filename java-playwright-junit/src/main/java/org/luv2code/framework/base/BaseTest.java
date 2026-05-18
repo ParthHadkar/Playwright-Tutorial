@@ -4,10 +4,7 @@ import com.microsoft.playwright.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.luv2code.framework.constants.TestDataConstant;
-<<<<<<< HEAD
 import org.luv2code.framework.utils.ConfigUtil;
-=======
->>>>>>> ec1b813d35b61df8ad27a73f5cb866391e684649
 
 import java.nio.file.Paths;
 import java.util.List;
