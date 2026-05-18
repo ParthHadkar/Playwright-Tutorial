@@ -3,8 +3,12 @@ package org.luv2code.o4_actions;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.luv2code.framework.base.BaseTest;
+import org.luv2code.framework.constants.TestDataConstant;
+import org.luv2code.framework.extensions.LoggingExtension;
 
+@ExtendWith({LoggingExtension.class})
 public class AuthenticationFormTest extends BaseTest {
 
     @Test
@@ -24,11 +28,11 @@ public class AuthenticationFormTest extends BaseTest {
 
         // send username to "username" text field
         page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions()
-                .setName("username")).fill("admin");
+                .setName("username")).fill(TestDataConstant.ADMIN_USERNAME);
 
         // send password to "password" text field
         page.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions()
-                .setName("password")).fill("admin");
+                .setName("password")).fill(TestDataConstant.ADMIN_PASSWORD);
 
         // click on "Sign In" button
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions()

@@ -3,6 +3,7 @@ package org.luv2code.framework.base;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.luv2code.framework.constants.TestDataConstant;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -35,7 +36,7 @@ public class BaseTest {
         page.setDefaultTimeout(15000); // set to 15 seconds
 
         // navigate to luv2test site
-        page.navigate("https://www.luv2test.com/");
+        page.navigate(TestDataConstant.BASE_URL);
         System.out.println("Home page Title: "+page.title());
     }
 
