@@ -3,6 +3,8 @@ package org.luv2code.framework.base;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.luv2code.framework.constants.TestDataConstant;
+import org.luv2code.framework.utils.ConfigUtil;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -18,12 +20,23 @@ public class BaseTest {
     void setUp() {
         // Launch chrome browser
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(
-                new BrowserType.LaunchOptions()
-                        .setHeadless(false)
-                        .setSlowMo(1000)
-                        .setArgs(List.of("--start-maximized"))
-        );
+
+        if (ConfigUtil.getProperty("browser").equalsIgnoreCase("firefox")) {
+            browser = playwright.firefox().launch(
+                    new BrowserType.LaunchOptions()
+                            .setHeadless(false)
+                            .setSlowMo(1000)
+                            .setArgs(List.of("--start-maximized"))
+            );
+        }
+        else {
+            browser = playwright.chromium().launch(
+                    new BrowserType.LaunchOptions()
+                            .setHeadless(false)
+                            .setSlowMo(1000)
+                            .setArgs(List.of("--start-maximized"))
+            );
+        }
         // create context without viewport (true maximize effect)
         //page = browser.newContext(new Browser.NewContextOptions().setViewportSize(null)).newPage();
         context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null)
@@ -35,7 +48,7 @@ public class BaseTest {
         page.setDefaultTimeout(15000); // set to 15 seconds
 
         // navigate to luv2test site
-        page.navigate("https://www.luv2test.com/");
+        page.navigate(TestDataConstant.BASE_URL);
         System.out.println("Home page Title: "+page.title());
     }
 

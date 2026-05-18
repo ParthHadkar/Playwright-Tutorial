@@ -2,8 +2,11 @@ package org.luv2code.o4_actions;
 
 import com.microsoft.playwright.Locator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.luv2code.framework.base.BaseTest;
+import org.luv2code.framework.extensions.LoggingExtension;
 
+@ExtendWith({LoggingExtension.class})
 public class DragAndDropTest extends BaseTest {
 
     @Test
